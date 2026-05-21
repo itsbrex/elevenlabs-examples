@@ -22,6 +22,7 @@ Current repo skills:
 - `/music`
 - `/setup-api-key`
 - `/sound-effects`
+- `/speech-engine`
 - `/speech-to-text`
 - `/text-to-speech`
 
@@ -41,17 +42,18 @@ Ignore the deprecated root `examples/` folder for new work.
 
 ## Current example matrix
 
-| Path                                   | Shared template        | Prompt sections                                                                 | Setup extras                                                                                                        |
-| -------------------------------------- | ---------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `text-to-speech/typescript/quickstart` | `templates/typescript` | `index.ts`                                                                      | Copies `.env`, preserves `node_modules`, installs with `pnpm`                                                       |
-| `text-to-speech/python/quickstart`     | `templates/python`     | `main.py`                                                                       | Copies `.env`, preserves `.venv`, installs with `pip`                                                               |
-| `speech-to-text/typescript/quickstart` | `templates/typescript` | `index.ts`                                                                      | Optional `assets/`, copies `.env`, preserves `node_modules`                                                         |
-| `speech-to-text/python/quickstart`     | `templates/python`     | `main.py`                                                                       | Optional `assets/`, copies `.env`, preserves `.venv`                                                                |
-| `music/typescript/quickstart`          | `templates/typescript` | `index.ts`                                                                      | Copies `.env`, preserves `node_modules`, installs with `pnpm`                                                       |
-| `music/nextjs/quickstart`              | `templates/nextjs`     | `app/api/generate-music/route.ts`, `app/page.tsx`                               | Adds `@elevenlabs/elevenlabs-js`, copies `.env.local`, preserves `node_modules` and `.next`                         |
-| `speech-to-text/nextjs/realtime`       | `templates/nextjs`     | `app/api/scribe-token/route.ts`, `app/page.tsx`                                 | Adds `@elevenlabs/react` and `@elevenlabs/elevenlabs-js`, copies `.env.local`, preserves `node_modules` and `.next` |
-| `agents/nextjs/quickstart`             | `templates/nextjs`     | `app/api/agent/route.ts`, `app/api/conversation-token/route.ts`, `app/page.tsx` | Same Next.js setup pattern, removes `@elevenlabs/client` if present                                                 |
-| `agents/nextjs/guardrails`             | `templates/nextjs`     | `app/api/agent/route.ts`, `app/api/conversation-token/route.ts`, `app/page.tsx` | Same as quickstart, but prompt targets guardrails and `onGuardrailTriggered`                                        |
+| Path                                   | Shared template        | Prompt sections                                                                                         | Setup extras                                                                                                        |
+| -------------------------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `text-to-speech/typescript/quickstart` | `templates/typescript` | `index.ts`                                                                                              | Copies `.env`, preserves `node_modules`, installs with `pnpm`                                                       |
+| `text-to-speech/python/quickstart`     | `templates/python`     | `main.py`                                                                                               | Copies `.env`, preserves `.venv`, installs with `pip`                                                               |
+| `speech-to-text/typescript/quickstart` | `templates/typescript` | `index.ts`                                                                                              | Optional `assets/`, copies `.env`, preserves `node_modules`                                                         |
+| `speech-to-text/python/quickstart`     | `templates/python`     | `main.py`                                                                                               | Optional `assets/`, copies `.env`, preserves `.venv`                                                                |
+| `music/typescript/quickstart`          | `templates/typescript` | `index.ts`                                                                                              | Copies `.env`, preserves `node_modules`, installs with `pnpm`                                                       |
+| `music/nextjs/quickstart`              | `templates/nextjs`     | `app/api/generate-music/route.ts`, `app/page.tsx`                                                       | Adds `@elevenlabs/elevenlabs-js`, copies `.env.local`, preserves `node_modules` and `.next`                         |
+| `speech-to-text/nextjs/realtime`       | `templates/nextjs`     | `app/api/scribe-token/route.ts`, `app/page.tsx`                                                         | Adds `@elevenlabs/react` and `@elevenlabs/elevenlabs-js`, copies `.env.local`, preserves `node_modules` and `.next` |
+| `agents/nextjs/quickstart`             | `templates/nextjs`     | `app/api/agent/route.ts`, `app/api/conversation-token/route.ts`, `app/page.tsx`                         | Same Next.js setup pattern, removes `@elevenlabs/client` if present                                                 |
+| `agents/nextjs/guardrails`             | `templates/nextjs`     | `app/api/agent/route.ts`, `app/api/conversation-token/route.ts`, `app/page.tsx`                         | Same as quickstart, but prompt targets guardrails and `onGuardrailTriggered`                                        |
+| `speech-engine/nextjs/quickstart`      | `templates/nextjs`     | `server.mts`, `scripts/create-engine.mts`, `app/api/token/route.ts`, `app/page.tsx`, `lib/assistant.ts` | Adds `openai`, `dotenv`, `tsx`; Speech Engine scripts; `livekit-client` override; copies `.env.example`             |
 
 ## Runtime setup rules
 
@@ -93,6 +95,7 @@ Ignore the deprecated root `examples/` folder for new work.
 - CLI transcription or file-based Scribe example: start from the speech-to-text quickstarts.
 - Realtime microphone UI: start from `speech-to-text/nextjs/realtime`.
 - Voice agent creation and conversation UI: start from `agents/nextjs/quickstart`.
+- Speech Engine WebSocket server plus Next.js WebRTC client: start from `speech-engine/nextjs/quickstart`.
 - First Expo full-stack example for a product: start from the closest same-product `nextjs` example until a dedicated Expo reference exists.
 - For specialized agent behavior, start from `agents/nextjs/quickstart` and consult `agents/nextjs/guardrails` only as an existing reference, not as a scaffold mode.
 
