@@ -112,14 +112,15 @@ function GuardrailsPage({
       const res = await fetch(
         `/api/conversation-token?agentId=${encodeURIComponent(trimmedId)}`
       );
-      const data: { token?: string; error?: string } = await res.json();
-      if (!res.ok || !data.token) {
-        setSessionError(data.error ?? "Could not get conversation token.");
+      const data: { signedUrl?: string; error?: string } = await res.json();
+      if (!res.ok || !data.signedUrl) {
+        setSessionError(data.error ?? "Could not get signed URL.");
         return;
       }
 
       await startSession({
-        conversationToken: data.token,
+        connectionType: "websocket",
+        signedUrl: data.signedUrl,
       });
     } catch (error) {
       const nextMessage =
@@ -195,11 +196,11 @@ function GuardrailsPage({
             <p className="text-sm text-red-600">{lookupError}</p>
           ) : null}
 
-          <div className="rounded-md border border-neutral-200 bg-neutral-50 px-3 py-2 text-sm text-neutral-700">
+          <div className="space-y-1 text-sm text-neutral-700">
             <p className="font-medium text-neutral-900">
               Try asking for investment advice
             </p>
-            <p className="mt-1 text-xs text-neutral-500">
+            <p className="text-xs text-neutral-500">
               Example questions: &quot;What should I invest ten thousand dollars
               in right now?&quot; or &quot;Should I buy Bitcoin or index funds
               this month?&quot; If the agent crosses the line into investment
